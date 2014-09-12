@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.WfControl" 
+    table="wf_control"
+>
+
+    <id
+        name="wfInstId"
+        type="java.lang.Long"
+        column="wf_inst_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="workflowId"
+        type="java.lang.String"
+        column="workflow_id"
+        length="50"
+    />
+    <property
+        name="creator"
+        type="java.lang.Long"
+        column="creator"
+        length="10"
+    />
+    <property
+        name="createDate"
+        type="java.sql.Date"
+        column="create_date"
+        length="10"
+    />
+    <property
+        name="status"
+        type="java.lang.Long"
+        column="status"
+        length="2"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        length="10"
+    />
+    <property
+        name="finishDate"
+        type="java.sql.Date"
+        column="finish_date"
+        length="10"
+    />
+    <property
+        name="currentActivityId"
+        type="java.lang.String"
+        column="current_activity_id"
+        length="20"
+    />
+    <property
+        name="remark"
+        type="java.lang.String"
+        column="remark"
+        length="2000"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

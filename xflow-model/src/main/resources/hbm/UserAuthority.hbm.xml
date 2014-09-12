@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.UserAuthority" 
+    table="user_authority"
+>
+
+    <id
+        name="userAuthId"
+        type="java.lang.Long"
+        column="user_auth_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="creator"
+        type="java.lang.Long"
+        column="creator"
+        length="10"
+    />
+    <property
+        name="createDate"
+        type="java.sql.Date"
+        column="create_date"
+        length="10"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        length="10"
+    />
+    <property
+        name="endDate"
+        type="java.sql.Date"
+        column="end_date"
+        length="10"
+    />
+    <property
+        name="updateDate"
+        type="java.sql.Date"
+        column="update_date"
+        length="10"
+    />
+    <property
+        name="updater"
+        type="java.lang.Long"
+        column="updater"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Authority -->
+    <many-to-one
+        name="authority"
+        class="net.ms.workflow.model.Authority"
+        not-null="true"
+    >
+        <column name="auth_id" />
+    </many-to-one>
+    <!-- bi-directional many-to-one association to User -->
+    <many-to-one
+        name="user"
+        class="net.ms.workflow.model.User"
+        not-null="true"
+    >
+        <column name="user_id" />
+    </many-to-one>
+
+</class>
+</hibernate-mapping>

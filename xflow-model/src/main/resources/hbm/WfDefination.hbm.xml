@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.workflow.model.WfDefination" table="wf_defination">
+
+		<id name="workflowId" type="java.lang.String" column="workflow_id">
+			<generator class="native" />
+		</id>
+
+		<property name="workflowName" type="java.lang.String" column="workflow_name"
+			length="100" />
+		<property name="workflowDesc" type="java.lang.String" column="workflow_desc"
+			length="2000" />
+		<property name="creator" type="java.lang.Long" column="creator"
+			length="10" />
+		<property name="createDate" type="java.sql.Date" column="create_date"
+			length="10" />
+
+		<!-- Associations -->
+		<set name="wfActivities" table="wf_activity" outer-join="true" lazy="false">
+			<key>
+				<column name="workflow_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.Activity"
+				column="activity_id" fetch="join" />
+		</set>
+		<set name="wfParameters" table="wf_parameter" outer-join="true" lazy="false">
+			<key>
+				<column name="workflow_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.Parameter"
+				column="param_id" />
+		</set>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.workflow.model.Activity" table="activity">
+
+		<id name="activityId" type="java.lang.String" column="activity_id">
+
+		</id>
+
+		<property name="activityName" type="java.lang.String" column="activity_name"
+			length="100" />
+		<property name="activityDesc" type="java.lang.String" column="activity_desc"
+			length="2000" />
+		<property name="activityType" type="java.lang.Long" column="activity_type"
+			length="2" />
+
+		<!-- Associations -->
+		<set name="wfActivityParams" table="wf_activity_param" outer-join="true"
+			lazy="false">
+			<key>
+				<column name="activity_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.Parameter"
+				column="param_id" />
+		</set>
+		<set name="activityPreActions" table="activity_preaction" outer-join="true"
+			lazy="false" order-by="sort_no">
+			<key>
+				<column name="activity_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.WfAction"
+				column="action_id" />
+		</set>
+		<set name="activityActions" table="activity_action" outer-join="true"
+			lazy="false" order-by="sort_no">
+			<key>
+				<column name="activity_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.WfAction"
+				column="action_id" />
+		</set>
+		<set name="activityPostActions" table="activity_postaction" outer-join="true"
+			lazy="false" order-by="sort_no">
+			<key>
+				<column name="activity_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.WfAction"
+				column="action_id" />
+		</set>
+
+		<joined-subclass name="net.ms.workflow.model.SubflowActivity"
+			table="subflow_activity">
+			<key column="subflow_activity_id" />
+
+			<property name="subflowId" type="java.lang.String" column="subflow_id"
+				length="50" />
+			<property name="workflowId" type="java.lang.String" column="workflow_id"
+				length="50" />
+		</joined-subclass>
+		<joined-subclass name="net.ms.workflow.model.UserActivity"
+			table="user_activity">
+			<key column="user_activity_id" />
+
+			<property name="policyType" type="java.lang.Long" column="policy_type"
+				length="2" />
+			<property name="postId" type="java.lang.Long" column="post_id"
+				length="10" />
+			<property name="userId" type="java.lang.Long" column="user_id"
+				length="10" />
+			<property name="orgId" type="java.lang.Long" column="org_id"
+				length="10" />
+			<property name="entryType" type="java.lang.Long" column="entry_type"
+				length="2" />
+			<property name="entryValue" type="java.lang.String" column="entry_value"
+				length="100" />
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://192.168.0.8/dtd/spring-beans.dtd">
+
+<beans>
+	<description>Workflow Config</description>
+	<bean id="workflowProxy"
+			class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" singleton="false">
+			<property name="transactionManager">
+				<ref bean="transactionManager" />
+			</property>
+			<property name="target">
+				<ref bean="workflow" />
+			</property>
+			<property name="transactionAttributes">
+				<props>
+					<prop key="*">
+						PROPAGATION_REQUIRED
+					</prop>
+				</props>
+			</property>
+	</bean>
+	<bean id="workflow" class="net.ms.workflow.DBWorkflowEngine" singleton="false">
+		<property name="wfServiceNoTx">
+			<ref bean="wfServiceNoTx" />
+		</property>
+		<property name="wfServiceTx">
+			<ref bean="wfServiceTx" />
+		</property>
+	</bean>
+	<bean id="wfServiceNoTx" class="net.ms.workflow.service.WorkflowServiceImpl" singleton="false">
+		<property name="entityManager">
+			<ref bean="entityManagerNoTx" />
+		</property>
+	</bean>
+	<bean id="wfServiceTx" class="net.ms.workflow.service.WorkflowServiceImpl" singleton="false">
+		<property name="entityManager">
+			<ref bean="entityManagerTx" />
+		</property>
+	</bean>
+	<bean id="dbwfServiceNoTx" class="net.ms.workflow.service.DBWFServiceImpl" singleton="false">
+		<property name="entityManager">
+			<ref bean="entityManagerNoTx" />
+		</property>
+	</bean>
+	<bean id="dbwfConfig" class="net.ms.workflow.utils.config.DBWFConfig" singleton="false">
+		<property name="serviceNoTx">
+			<ref bean="dbwfServiceNoTx" />
+		</property>
+	</bean>
+</beans>

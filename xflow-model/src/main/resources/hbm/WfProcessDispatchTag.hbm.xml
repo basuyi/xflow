@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.WfProcessDispatchTag" 
+    table="wf_process_dispatch_tag"
+>
+
+    <id
+        name="dispatchTagSeq"
+        type="java.lang.Long"
+        column="dispatch_tag_seq"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="dispatchSeq"
+        type="java.lang.Long"
+        column="dispatch_seq"
+        length="15"
+    />
+    <property
+        name="optOrder"
+        type="java.lang.Long"
+        column="opt_order"
+        length="2"
+    />
+    <property
+        name="status"
+        type="java.lang.Long"
+        column="status"
+        length="2"
+    />
+    <property
+        name="postId"
+        type="java.lang.Long"
+        column="post_id"
+        length="10"
+    />
+    <property
+        name="userId"
+        type="java.lang.Long"
+        column="user_id"
+        length="10"
+    />
+    <property
+        name="orgId"
+        type="java.lang.Long"
+        column="org_id"
+        length="10"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="finishDate"
+        type="java.sql.Date"
+        column="finish_date"
+        length="10"
+    />
+    <property
+        name="operateDate"
+        type="java.sql.Date"
+        column="operate_date"
+        length="10"
+    />
+    <property
+        name="resultCode"
+        type="java.lang.String"
+        column="result_code"
+        length="10"
+    />
+    <property
+        name="remark"
+        type="java.lang.String"
+        column="remark"
+        length="2000"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

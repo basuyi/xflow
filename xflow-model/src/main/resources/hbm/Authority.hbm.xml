@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.Authority" 
+    table="authority"
+>
+
+    <id
+        name="authId"
+        type="java.lang.Long"
+        column="auth_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="authDesc"
+        type="java.lang.String"
+        column="auth_desc"
+        not-null="true"
+        length="40"
+    />
+    <property
+        name="authCode"
+        type="java.lang.String"
+        column="auth_code"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="authType"
+        type="java.lang.Long"
+        column="auth_type"
+        length="2"
+    />
+    <property
+        name="creator"
+        type="java.lang.Long"
+        column="creator"
+        length="10"
+    />
+    <property
+        name="createDate"
+        type="java.sql.Date"
+        column="create_date"
+        length="10"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        length="10"
+    />
+    <property
+        name="endDate"
+        type="java.sql.Date"
+        column="end_date"
+        length="10"
+    />
+    <property
+        name="updateDate"
+        type="java.sql.Date"
+        column="update_date"
+        length="10"
+    />
+    <property
+        name="updater"
+        type="java.lang.Long"
+        column="updater"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to PostAuthority -->
+    <set
+        name="postAuthorities"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="auth_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.PostAuthority"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to OrgAuthority -->
+    <set
+        name="orgAuthorities"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="auth_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.OrgAuthority"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to UserAuthority -->
+    <set
+        name="userAuthorities"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="auth_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.UserAuthority"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to MenuItemAuth -->
+    <set
+        name="menuItemAuths"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="auth_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.MenuItemAuth"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.Staff" 
+    table="staff"
+>
+
+    <id
+        name="staffId"
+        type="java.lang.Long"
+        column="staff_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="staffCode"
+        type="java.lang.String"
+        column="staff_code"
+        length="20"
+    />
+    <property
+        name="supervisor"
+        type="java.lang.Long"
+        column="supervisor"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

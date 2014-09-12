@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://192.168.0.8/dtd/spring-beans.dtd">
+
+<beans>
+	<description>Workflow Config</description>
+	<import resource="classpath:dao_context.xml"/>
+	<bean id="projectBuilderProxy"
+			class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" singleton="false">
+			<property name="transactionManager">
+				<ref bean="transactionManager" />
+			</property>
+			<property name="target">
+				<ref bean="projectBuilder" />
+			</property>
+			<property name="transactionAttributes">
+				<props>
+					<prop key="*">
+						PROPAGATION_REQUIRED
+					</prop>
+				</props>
+			</property>
+	</bean>
+	<bean id="projectBuilder" class="net.ms.designer.projectbuilder.service.DBProjectBuilder" singleton="false">
+		<property name="serviceTx">
+			<ref bean="serviceTx" />
+		</property>
+	</bean>
+	<bean id="serviceTx" class="net.ms.designer.projectbuilder.dao.DBProjectBuilderDAO" singleton="false">
+		<property name="entityManager">
+			<ref bean="entityManagerTx" />
+		</property>
+	</bean>
+</beans>

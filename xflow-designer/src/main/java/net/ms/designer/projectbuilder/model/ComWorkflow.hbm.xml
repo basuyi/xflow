@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.designer.projectbuilder.model.ComWorkflow" table="com_workflow">
+
+		<id name="comWorkflowId" type="java.lang.Long" column="com_workflow_id">
+			<generator class="native" />
+		</id>
+<!--
+		<property name="componentId" type="java.lang.Long" column="component_id"
+			length="10" />-->
+		<property name="workflowId" type="java.lang.String" column="workflow_id"
+			length="50" />
+
+		<!-- Associations -->
+		<many-to-one name="component" class="net.ms.designer.projectbuilder.model.Component"
+			column="component_id" outer-join="true" />
+	</class>
+</hibernate-mapping>

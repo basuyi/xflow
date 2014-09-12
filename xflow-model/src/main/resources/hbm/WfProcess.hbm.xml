@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.WfProcess" 
+    table="wf_process"
+>
+
+    <id
+        name="wfProcessSeq"
+        type="java.lang.Long"
+        column="wf_process_seq"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="workflowId"
+        type="java.lang.String"
+        column="workflow_id"
+        length="50"
+    />
+    <property
+        name="activityId"
+        type="java.lang.String"
+        column="activity_id"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="activityType"
+        type="java.lang.String"
+        column="activity_type"
+        length="10"
+    />
+    <property
+        name="status"
+        type="java.lang.String"
+        column="status"
+        not-null="true"
+        length="2"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="finishDate"
+        type="java.sql.Date"
+        column="finish_date"
+        length="10"
+    />
+    <property
+        name="operateDate"
+        type="java.sql.Date"
+        column="operate_date"
+        length="10"
+    />
+    <property
+        name="repeatCount"
+        type="java.lang.Integer"
+        column="repeat_count"
+        length="4"
+    />
+    <property
+        name="operater"
+        type="java.lang.Long"
+        column="operater"
+        length="10"
+    />
+    <property
+        name="remark"
+        type="java.lang.String"
+        column="remark"
+        length="2000"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to WfControl -->
+    <many-to-one
+        name="wfControl"
+        class="net.ms.workflow.model.WfControl"
+        not-null="true"
+    >
+        <column name="wf_inst_id" />
+    </many-to-one>
+  
+
+</class>
+</hibernate-mapping>

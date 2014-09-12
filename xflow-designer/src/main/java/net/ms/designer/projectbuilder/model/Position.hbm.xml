@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.designer.projectbuilder.model.Position" table="position"
+	discriminator-value="not null">
+
+		<id name="positionId" type="java.lang.Long" column="position_id">
+			<generator class="native" />
+		</id>
+		<discriminator column="object_type" type="java.lang.Long" />
+		<property name="positionX" type="java.lang.Long" column="position_x"
+			length="10" />
+		<property name="positionY" type="java.lang.Long" column="position_y"
+			length="10" />
+
+		<!-- Associations -->
+		<subclass name="net.ms.designer.projectbuilder.model.PackagePosition"
+			discriminator-value="0">
+			<property name="packageId">
+				<column name="package_id" sql-type="bigint(10)" />
+			</property>
+		</subclass>
+		<subclass name="net.ms.designer.projectbuilder.model.ComPosition"
+			discriminator-value="1">
+			<property name="componentId">
+				<column name="component_id" sql-type="bigint(10)" />
+			</property>
+		</subclass>
+		<subclass name="net.ms.designer.projectbuilder.model.ComDetailPosition"
+			discriminator-value="2">
+			<property name="comDetailId">
+				<column name="com_detail_id" sql-type="bigint(10)" />
+			</property>
+		</subclass>
+		<subclass name="net.ms.designer.projectbuilder.model.WorkflowPosition"
+			discriminator-value="3">
+			<property name="comWorkflowId">
+				<column name="com_workflow_id" sql-type="bigint(10)" />
+			</property>
+		</subclass>
+		<subclass name="net.ms.designer.projectbuilder.model.WfActivityPosition"
+			discriminator-value="4">
+			<property name="wfActivityId">
+				<column name="wf_activity_id" sql-type="bigint(10)" />
+			</property>
+		</subclass>
+
+
+	</class>
+</hibernate-mapping>

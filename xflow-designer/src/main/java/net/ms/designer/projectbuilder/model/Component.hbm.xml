@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.designer.projectbuilder.model.Component" table="component">
+
+		<id name="componentId" type="java.lang.Long" column="component_id">
+			<generator class="native" />
+		</id>
+		<!-- <property name="packageId" type="java.lang.Long" column="package_id" 
+			length="10" /> -->
+		<property name="componentCode" type="java.lang.String"
+			column="component_code" length="20" />
+		<property name="componentName" type="java.lang.String"
+			column="component_name" length="50" />
+		<property name="componentDesc" type="java.lang.String"
+			column="component_desc" length="100" />
+
+		<!-- Associations -->
+		<many-to-one name="comPackage" class="net.ms.designer.projectbuilder.model.Package"
+			column="package_id" outer-join="true" />
+		<set name="comWorkflows" table="com_workflow" inverse="true" lazy="false"
+			outer-join="true">
+			<key column="component_id" />
+			<one-to-many class="net.ms.designer.projectbuilder.model.ComWorkflow" />
+		</set>
+		<set name="comDetials" table="com_detail" inverse="true" lazy="false" outer-join="true">
+			<key column="component_id" />
+			<one-to-many class="net.ms.designer.projectbuilder.model.ComDetail" />
+		</set>
+
+	</class>
+</hibernate-mapping>

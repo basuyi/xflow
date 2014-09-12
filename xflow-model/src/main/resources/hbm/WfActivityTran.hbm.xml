@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.workflow.model.WfActivityTran" table="wf_activity_trans">
+
+		<id name="activityTransId" type="java.lang.Long" column="activity_trans_id">
+			<generator class="native" />
+		</id>
+
+		<property name="fromWfActivityId" type="java.lang.Long"
+			column="from_wf_activity_id" length="15" />
+		<property name="toWfActivityId" type="java.lang.Long" column="to_wf_activity_id"
+			length="15" />
+		<property name="conditionPolicy" type="java.lang.Long"
+			column="condition_policy" length="2" />
+
+		<!-- Associations -->
+		<set name="wfTranActions" table="wf_trans_action" outer-join="true"
+			lazy="false" order-by="sort_no">
+			<key>
+				<column name="activity_trans_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.WfAction"
+				column="action_id" />
+		</set>
+		<set name="wfTranConditions" table="wf_trans_condition" outer-join="true"
+			lazy="false" order-by="sort_no">
+			<key>
+				<column name="activity_trans_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.WfCondition"
+				column="condition_id" />
+		</set>
+
+
+	</class>
+</hibernate-mapping>

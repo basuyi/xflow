@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.Organize" 
+    table="organize"
+>
+
+    <id
+        name="orgId"
+        type="java.lang.Long"
+        column="org_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="orgName"
+        type="java.lang.String"
+        column="org_name"
+        length="30"
+    />
+    <property
+        name="orgType"
+        type="java.lang.Long"
+        column="org_type"
+        length="2"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="createDate"
+        type="java.sql.Date"
+        column="create_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updater"
+        type="java.lang.String"
+        column="updater"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updateDate"
+        type="java.sql.Date"
+        column="update_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="creator"
+        type="java.sql.Date"
+        column="creator"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="endDate"
+        type="java.sql.Date"
+        column="end_date"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional one-to-many association to User -->
+    <set
+        name="users"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="org_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.User"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to OrgAuthority -->
+    <set
+        name="orgAuthorities"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="org_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.OrgAuthority"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.User" 
+    table="user"
+    mutable="false"
+>
+    <meta attribute="implement-equals" inherit="false">true</meta>
+
+    <id
+        name="userId"
+        type="java.lang.String"
+        column="user_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="userName"
+        type="java.lang.String"
+        column="user_name"
+        not-null="true"
+        length="20"
+    />
+    <property
+        name="userType"
+        type="java.lang.Long"
+        column="user_type"
+        length="2"
+    />
+    <property
+        name="loginId"
+        type="java.lang.String"
+        column="login_id"
+        length="10"
+    />
+    <property
+        name="password"
+        type="java.lang.String"
+        column="password"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        length="10"
+    />
+    <property
+        name="endDate"
+        type="java.sql.Date"
+        column="end_date"
+        length="10"
+    />
+    <property
+        name="createDate"
+        type="java.sql.Date"
+        column="create_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="creator"
+        type="java.lang.String"
+        column="creator"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updateDate"
+        type="java.sql.Date"
+        column="update_date"
+        not-null="true"
+        length="10"
+    />
+    <property
+        name="updater"
+        type="java.lang.String"
+        column="updater"
+        not-null="true"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+    <!-- bi-directional many-to-one association to Organize -->
+    <many-to-one
+        name="organize"
+        class="net.ms.workflow.model.Organize"
+        not-null="true"
+    >
+        <column name="org_id" />
+    </many-to-one>
+    <!-- bi-directional one-to-many association to UserPost -->
+    <set
+        name="userPosts"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="user_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.UserPost"
+        />
+    </set>
+    <!-- bi-directional one-to-many association to UserAuthority -->
+    <set
+        name="userAuthorities"
+        lazy="true"
+        inverse="true"
+		cascade="none"
+    >
+        <key>
+            <column name="user_id" />
+        </key>
+        <one-to-many 
+            class="net.ms.workflow.model.UserAuthority"
+        />
+    </set>
+
+</class>
+</hibernate-mapping>

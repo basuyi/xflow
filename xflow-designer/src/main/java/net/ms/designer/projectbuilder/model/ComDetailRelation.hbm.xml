@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.designer.projectbuilder.model.ComDetailRelation" table="com_detail_relation">
+
+		<id name="comDetailRelationId" type="java.lang.Long" column="com_detail_relation_id">
+			<generator class="native" />
+		</id>
+
+		<property name="fromComDetailId" type="java.lang.Long"
+			column="from_com_detail_id" length="10" />
+		<property name="toComDetailId" type="java.lang.Long" column="to_com_detail_id"
+			length="10" />
+		<property name="relationType" type="java.lang.Long" column="relation_type"
+			length="2" />
+
+		<!-- Associations -->
+
+
+	</class>
+</hibernate-mapping>

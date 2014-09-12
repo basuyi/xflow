@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.WfProcessDispatch" 
+    table="wf_process_dispatch"
+>
+
+    <id
+        name="dispatchSeq"
+        type="java.lang.Long"
+        column="dispatch_seq"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="wfProcessSeq"
+        type="java.lang.Long"
+        column="wf_process_seq"
+        length="15"
+    />
+    <property
+        name="wfInstId"
+        type="java.lang.Long"
+        column="wf_inst_id"
+        length="15"
+    />
+    <property
+        name="dispatchType"
+        type="java.lang.Long"
+        column="dispatch_type"
+        length="2"
+    />
+    <property
+        name="postId"
+        type="java.lang.Long"
+        column="post_id"
+        length="10"
+    />
+    <property
+        name="userId"
+        type="java.lang.Long"
+        column="user_id"
+        length="10"
+    />
+    <property
+        name="orgId"
+        type="java.lang.Long"
+        column="org_id"
+        length="10"
+    />
+    <property
+        name="optDate"
+        type="java.sql.Timestamp"
+        column="opt_date"
+        length="19"
+    />
+    <property
+        name="dispatchStatus"
+        type="java.lang.Long"
+        column="dispatch_status"
+        length="2"
+    />
+    <property
+        name="tagPolicy"
+        type="java.lang.Long"
+        column="tag_policy"
+        length="2"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

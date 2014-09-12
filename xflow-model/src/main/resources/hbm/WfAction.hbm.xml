@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.workflow.model.WfAction" table="wf_action">
+
+		<id name="actionId" type="java.lang.String" column="action_id">
+			<generator class="native" />
+		</id>
+
+		<property name="actionName" type="java.lang.String" column="action_name"
+			length="100" />
+		<property name="actionDesc" type="java.lang.String" column="action_desc"
+			length="2000" />
+		<property name="actionType" type="java.lang.Long" column="action_type"
+			length="2" />
+		<property name="actionValue" type="java.lang.String" column="action_value"
+			length="2000" />
+
+		<!-- Associations --><!-- 
+		<set name="actionParams" table="action_parameter" outer-join="true"
+			lazy="false">
+			<key>
+				<column name="action_id" />
+			</key>
+			<many-to-many class="net.ms.workflow.model.Parameter"
+				column="param_id" outer-join="true"/>
+		</set> -->
+	</class>
+</hibernate-mapping>

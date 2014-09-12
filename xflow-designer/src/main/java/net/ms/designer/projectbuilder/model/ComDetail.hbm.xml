@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.designer.projectbuilder.model.ComDetail" table="com_detail">
+
+		<id name="comDetailId" type="java.lang.Long" column="com_detail_id">
+			<generator class="native" />
+		</id>
+		<!-- <property name="componentId" type="java.lang.Long" column="component_id" 
+			length="10" /> -->
+		<property name="comDetailCode" type="java.lang.String"
+			column="com_detail_code" length="20" />
+		<property name="comDetailName" type="java.lang.String"
+			column="com_detail_name" length="50" />
+		<property name="comDetailDesc" type="java.lang.String"
+			column="com_detail_desc" length="100" />
+		<property name="comDetailType" type="java.lang.Long" column="com_detail_type"
+			length="2" />
+		<many-to-one name="component" class="net.ms.designer.projectbuilder.model.Component"
+			column="component_id" outer-join="true" />
+		<set name="comAttrs" table="com_attr" inverse="true" lazy="false" outer-join="true">
+			<key column="com_detail_id" />
+			<one-to-many class="net.ms.designer.projectbuilder.model.ComAttr" />
+		</set>
+
+		<!-- Associations -->
+
+
+	</class>
+</hibernate-mapping>

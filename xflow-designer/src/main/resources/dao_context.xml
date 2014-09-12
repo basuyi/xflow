@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://192.168.0.8/dtd/spring-beans.dtd">
+
+<beans>
+	<description>DAO Config</description>
+	<bean id="dataSource"
+			class="org.apache.commons.dbcp.BasicDataSource"
+			destroy-method="close">
+			<property name="driverClassName">
+				<value>org.gjt.mm.mysql.Driver</value>
+			</property>
+			<property name="url">
+				<value>jdbc:mysql://www.basuyi.org:3306/ffms?useUnicode=true&amp;characterEncoding=UTF-8</value>
+			</property>
+			<property name="username">
+				<value>root</value>
+			</property>
+			<property name="password">
+				<value>password</value>
+			</property>
+	</bean>
+	<bean id="sessionFactoryTx"
+			class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" singleton="false">
+			<property name="dataSource">
+				<ref local="dataSource" />
+			</property>
+			<property name="mappingResources">
+				<list>
+					<value>net/ms/designer/projectbuilder/model/Component.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/ComWorkflow.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/Position.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/ComAttr.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/ComDetail.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/Company.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/Package.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/Project.hbm.xml</value>
+					<value>net/ms/designer/projectbuilder/model/ComDetailRelation.hbm.xml</value>
+					
+					<value>net/ms/workflow/model/WfControl.hbm.xml</value>
+					<value>net/ms/workflow/model/WfProcess.hbm.xml</value>
+					<value>net/ms/workflow/model/WfProcessDispatch.hbm.xml</value>
+					<value>net/ms/workflow/model/WfDefination.hbm.xml</value>
+					<value>net/ms/workflow/model/Activity.hbm.xml</value>
+					<value>net/ms/workflow/model/Parameter.hbm.xml</value>
+					<value>net/ms/workflow/model/WfAction.hbm.xml</value>
+					<value>net/ms/workflow/model/WfCondition.hbm.xml</value>
+					<value>net/ms/workflow/model/WfActivity.hbm.xml</value>
+					<value>net/ms/workflow/model/WfActivityTran.hbm.xml</value>
+					<value>net/ms/workflow/model/ActionParameter.hbm.xml</value>
+					<value>net/ms/workflow/model/WfActivityParam.hbm.xml</value>
+					<value>net/ms/workflow/model/ActivityAction.hbm.xml</value>
+					<value>net/ms/workflow/model/WfTransCondition.hbm.xml</value>
+				</list>
+			</property>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">
+						org.hibernate.dialect.MySQLDialect
+					</prop>
+					<prop key="hibernate.show_sql">
+						true
+					</prop>
+					<prop key="hibernate.hbm2ddl.auto">update</prop>
+				</props>
+			</property>
+	</bean>
+	<bean id="transactionManager"
+			class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+			<property name="sessionFactory">
+				<ref bean="sessionFactoryTx" />
+			</property>
+	</bean>
+	<bean id="entityManagerTx" class="net.ms.framework.service.dao.HibernateEntityManager" singleton="false">
+		<property name="sessionFactory">
+			<ref bean="sessionFactoryTx" />
+		</property>
+	</bean>
+</beans>

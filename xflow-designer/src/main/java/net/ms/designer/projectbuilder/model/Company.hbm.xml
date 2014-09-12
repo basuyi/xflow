@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+	<!-- Created by the Middlegen Hibernate plugin 2.1 http://boss.bekk.no/boss/middlegen/ 
+		http://www.hibernate.org/ -->
+
+	<class name="net.ms.designer.projectbuilder.model.Company" table="company">
+
+		<id name="companyId" type="java.lang.Long" column="company_id">
+			<generator class="native" />
+		</id>
+
+		<property name="companyCode" type="java.lang.String" column="company_code"
+			length="20" />
+		<property name="companyName" type="java.lang.String" column="company_name"
+			length="50" />
+		<property name="companyDesc" type="java.lang.String" column="company_desc"
+			length="100" />
+		<property name="companyType" type="java.lang.Long" column="company_type"
+			length="2" />
+
+		<!-- Associations -->
+		<set name="projects" table="project" inverse="true" lazy="false"
+			outer-join="true">
+			<key column="company_id" />
+			<one-to-many class="net.ms.designer.projectbuilder.model.Project" />
+		</set>
+
+
+	</class>
+</hibernate-mapping>

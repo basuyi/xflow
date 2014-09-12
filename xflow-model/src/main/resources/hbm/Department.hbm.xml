@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.Department" 
+    table="department"
+    mutable="false"
+>
+    <meta attribute="implement-equals" inherit="false">true</meta>
+
+    <id
+        name="deptId"
+        type="java.lang.Long"
+        column="dept_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="deptName"
+        type="java.lang.String"
+        column="dept_name"
+        not-null="true"
+        length="50"
+    />
+    <property
+        name="deptCode"
+        type="java.lang.String"
+        column="dept_code"
+        length="10"
+    />
+    <property
+        name="deptDesc"
+        type="java.lang.String"
+        column="dept_desc"
+        length="100"
+    />
+    <property
+        name="deptLevel"
+        type="java.lang.Long"
+        column="dept_level"
+        length="2"
+    />
+    <property
+        name="deptType"
+        type="java.lang.Long"
+        column="dept_type"
+        length="2"
+    />
+    <property
+        name="manager"
+        type="java.lang.Long"
+        column="manager"
+        length="10"
+    />
+    <property
+        name="upperDeptId"
+        type="java.lang.String"
+        column="upper_dept_id"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>

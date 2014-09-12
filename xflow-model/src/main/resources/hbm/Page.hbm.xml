@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="net.ms.workflow.model.Page" 
+    table="page"
+>
+
+    <id
+        name="pageId"
+        type="java.lang.Long"
+        column="page_id"
+    >
+        <generator class="native" />
+    </id>
+
+    <property
+        name="pageName"
+        type="java.lang.String"
+        column="page_name"
+        length="30"
+    />
+    <property
+        name="pageDesc"
+        type="java.lang.String"
+        column="page_desc"
+        length="100"
+    />
+    <property
+        name="pageCode"
+        type="java.lang.String"
+        column="page_code"
+        length="30"
+    />
+    <property
+        name="pageUrl"
+        type="java.lang.String"
+        column="page_url"
+        length="200"
+    />
+    <property
+        name="creator"
+        type="java.lang.Long"
+        column="creator"
+        length="10"
+    />
+    <property
+        name="createDate"
+        type="java.sql.Date"
+        column="create_date"
+        length="10"
+    />
+    <property
+        name="startDate"
+        type="java.sql.Date"
+        column="start_date"
+        length="10"
+    />
+    <property
+        name="endDate"
+        type="java.sql.Date"
+        column="end_date"
+        length="10"
+    />
+    <property
+        name="updater"
+        type="java.lang.Long"
+        column="updater"
+        length="10"
+    />
+    <property
+        name="updateDate"
+        type="java.sql.Date"
+        column="update_date"
+        length="10"
+    />
+
+    <!-- Associations -->
+  
+
+</class>
+</hibernate-mapping>
